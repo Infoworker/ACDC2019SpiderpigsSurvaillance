@@ -7,7 +7,8 @@ import {Provider} from 'mobx-react';
 import * as stores from './store';
 
 ReactDOM.render(
-<Provider buildningStore={stores.BuildningStore}>
+<Provider buildningStore={stores.BuildningStore}
+playerStore ={stores.PlayerStore}>
 <App />
 </Provider>
 , document.getElementById('root'));
