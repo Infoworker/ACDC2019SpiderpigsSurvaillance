@@ -35,13 +35,15 @@ class MapContainer extends React.Component<IMapContainerProps,{}>{
                         map:map,
                         title:buildning.title,
                         icon:buildning.icon
-                        
-                        
                     });
                     (window as any).google.maps.event.addListener(marker, 'click', function() {
                         //infowindow.open(map, marker);
+                        let c = buildning.feed ? '<iframe src="//aka.ms/ampembed?url=' + buildning.feed + '" name="azuremediaplayer" scrolling="no" frameborder="no" align="center" height="280px" width="500px" allowfullscreen></iframe>' : '<div><p>No feed available!</p></div>'
+
                         let popup = new (window as any).google.maps.InfoWindow({
-                            content: '<iframe title="YouTube video player" class="youtube-player" type="text/html" width="480" height="390" src="https://www.youtube.com/embed/714-Ioa4XQw" frameborder="0"></iframe>'
+                            //content: '<iframe src="//aka.ms/ampembed?url=https%3A%2F%2Fspiderpigsms.blob.core.windows.net%2Fasset-216f0abd-9c30-4e80-b768-c3407940a70f%2FPowerPlant.mp4%3Fsv%3D2017-04-17%26sr%3Dc%26si%3D766ed076-30fd-4eb2-9904-04a3ea2a0eb3%26sig%3D1jjQaZUk5xCB07JH0uuGOCbYdkQf8lE9JjVXURI%252B5NI%253D%26st%3D2019-03-01T13%253A33%253A43Z%26se%3D2119-04-04T12%253A33%253A43Z" name="azuremediaplayer" scrolling="no" frameborder="no" align="center" height="280px" width="500px" allowfullscreen></iframe>'
+                            content: c
+                            //content: '<iframe title="YouTube video player" class="youtube-player" type="text/html" width="480" height="390" src="https://www.youtube.com/embed/714-Ioa4XQw" frameborder="0"></iframe>'
                           })
                           popup.open(map, marker);
                         //window.location.href = marker.url;
