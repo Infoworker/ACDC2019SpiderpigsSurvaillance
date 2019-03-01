@@ -20,7 +20,8 @@ class MapContainer extends React.Component<IMapContainerProps,{}>{
             <Map
             id="myMap"
             options={{
-              center: { lat: 42.0974, lng: -72.5647 },
+              //center: { lat: 42.0974, lng: -72.5647 },
+              center: { lat: 42.0954, lng: -72.5750 },
               zoom: 15,
               
             }}
@@ -34,8 +35,7 @@ class MapContainer extends React.Component<IMapContainerProps,{}>{
                         position:{lat:buildning.position.lat, lng:buildning.position.lng},
                         map:map,
                         title:buildning.title,
-                        icon:buildning.icon
-                        
+                        icon:buildning.icon                        
                         
                     });
                     (window as any).google.maps.event.addListener(marker, 'click', function() {
