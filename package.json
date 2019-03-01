@@ -9,6 +9,7 @@
     "@types/react": "16.8.5",
     "@types/react-dom": "16.8.2",
     "@types/recompose": "^0.30.5",
+    "google-maps-react": "^2.0.2",
     "mobx": "^5.9.0",
     "mobx-react": "^5.4.3",
     "react": "^16.8.3",
