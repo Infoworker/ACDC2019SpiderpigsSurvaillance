@@ -11,9 +11,19 @@ interface IMapContainerProps{
     playerStore:IPlayerStoreProps
 }
 
+interface IMapContainerState{
+    markers: any[];
+}
 
-class MapContainer extends React.Component<IMapContainerProps,{}>{
 
+class MapContainer extends React.Component<IMapContainerProps,IMapContainerState>{
+
+    constructor(props: IMapContainerProps) {
+        super(props)
+        this.state= {
+            markers: []
+        }
+    }
 
     render(){
         return(
@@ -36,8 +46,21 @@ class MapContainer extends React.Component<IMapContainerProps,{}>{
                         title:buildning.title,
                         icon:buildning.icon
                     });
+
+                    let newMarkers = this.state.markers;
+                    newMarkers.push(marker);
+                    this.setState({markers: newMarkers});
+
+                    // this.state.markers.forEach(function(marker) {
+                    //     marker.infowindow.close(map, marker);
+                    // });
+
                     (window as any).google.maps.event.addListener(marker, 'click', function() {
                         //infowindow.open(map, marker);
+                        //this.hideAllInfoWindows(map);
+
+                        
+
                         let c = buildning.feed ? '<iframe src="//aka.ms/ampembed?url=' + buildning.feed + '" name="azuremediaplayer" scrolling="no" frameborder="no" align="center" height="280px" width="500px" allowfullscreen></iframe>' : '<div><p>No feed available!</p></div>'
 
                         let popup = new (window as any).google.maps.InfoWindow({
@@ -75,12 +98,19 @@ class MapContainer extends React.Component<IMapContainerProps,{}>{
           />
         );
     }
+
+    //  hideAllInfoWindows(map: any) {
+    //     this.state.markers.forEach(function(marker) {
+    //     marker.infowindow.close(map, marker);
+    //     }); 
 }
 
 const enchanted = compose<IMapContainerProps,{}>(
  inject('buildningStore','playerStore'),
  observer
 );
+
+
 
 export default enchanted(MapContainer);
 
