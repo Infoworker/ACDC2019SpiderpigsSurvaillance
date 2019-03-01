@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import MapContainer from './component/container/MapContainer';
+import { Switch, Router,Redirect, Route } from 'react-router';
+import DefaultLayout from './component/layout/Default';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <MapContainer/>
-      </div>
-    );
+     <Switch>
+       <Redirect exact path="/" to="/Home"/>
+       <Route path="/Home" component={DefaultLayout} /> 
+       <Route path="/Whoarewe" component={DefaultLayout} /> 
+       <Route path="/Whattodo" component={DefaultLayout} />       
+     </Switch>
+   );
   }
 }
 

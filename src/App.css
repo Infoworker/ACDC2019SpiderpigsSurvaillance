@@ -1,5 +1,13 @@
+@font-face {
+  font-family: 'Simpsons';
+  src:url('./font/Simpsonfont.otf');
+}
 .App {
   text-align: center;
+  width: 100%;
+  align-content: center;
+  background-color: #fff;
+  
 }
 
 .App-logo {
@@ -8,17 +16,50 @@
   pointer-events: none;
 }
 
-.App-header {
-  background-color: #238;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.header-image-left{
+  max-width:100%; 
+  max-height:100%;
+  float:left;
+  text-align:center;
+  padding: 40px 0 0 10px;
 }
+.header-image-right{
+  max-width: 100%;
+  max-height: 100%;
+  float:right; 
+  padding: 20px 20px 0 0;
+}
+.header-image-center{
+  max-width: 100%;
+  max-height: 100%; 
+  padding: 40px 0 0 0;
+}
+.App-header {
+  /* background-image: url('./image/header.png'); */
+  background-color: rgb(189, 215, 238);
+  background-repeat: no-repeat;
+  min-height: 250px;
+  display: block;
+  justify-content: center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.topp_menu{
+  padding-left:30px; 
+}
+.topp_menu button{
+  color: rgb(255, 255, 0);
+  float:left;
+  font-weight: 700;
+  font-family: Simpsons;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  background-color: transparent;
+  border: 0;
+  padding: 0 20px 0 0;
 
+}
 .App-link {
   color: #61dafb;
 }
