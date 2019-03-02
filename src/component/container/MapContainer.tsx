@@ -30,7 +30,6 @@ class MapContainer extends React.Component<IMapContainerProps,IMapContainerState
             tick: Date.now(),
             map: undefined
         }
-        //setInterval(this.tick, 2000);
         setInterval(()=>{
 
             if (this.state.playerMarkers && this.state.map) {
