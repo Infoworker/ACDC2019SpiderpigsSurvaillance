@@ -6,6 +6,11 @@ import * as Marge from '../../image/Marge.png';
 import * as Maggie_Simpson from '../../image/Maggie_Simpson.png';
 import * as Spiderpig from '../../image/spiderpig.png';
 import * as Smithers from '../../image/Waylon_Smithers.png';
+import * as chris from '../../image/chris_burns_orig.png';
+import * as seb from '../../image/seb_troy.png';
+import * as marius from '../../image/marius_edna.png';
+import * as laura from '../../image/marge_laura.png';
+import * as erwin from '../../image/erwin_flanders.png';
 
 export interface IPlayerStoreProps{
     players:IObservableArray<IPlayer>;
@@ -21,6 +26,9 @@ export interface IPlayer{
     icon:any;
     title:string;
     movementPattern:IPosition[]
+    favoriteDrink:string;
+    favoriteFood:string;
+    quote:string;
 }
 
 interface IPosition{
