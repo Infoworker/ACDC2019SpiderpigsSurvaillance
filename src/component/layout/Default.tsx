@@ -17,7 +17,7 @@ class DefaultLayout extends Component {
       <img src={simpsons_header} className="header-image-right"></img>
       <div className="topp_menu">
       <a href="/home">Home</a>
-      <a href="/report">Rapport</a>
+      <a href="https://inworker.sharepoint.com/sites/ASPC2017/SitePages/PowerBI.aspx">Rapport</a>
       <a href="https://inworker.sharepoint.com/sites/ASPC2017">Place to be</a>
       </div>
       </div>
