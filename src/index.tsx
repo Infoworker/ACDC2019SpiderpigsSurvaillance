@@ -9,7 +9,7 @@ import {BrowserRouter} from 'react-router-dom';
 
 ReactDOM.render(
 <Provider buildningStore={stores.BuildningStore}
-playerStore ={stores.PlayerStore}>
+playerStore ={stores.PlayerStore} trackerStore={stores.TrackingStore}>
 <BrowserRouter><App />
 </BrowserRouter>
 </Provider>

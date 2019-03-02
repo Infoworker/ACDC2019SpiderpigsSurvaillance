@@ -16,9 +16,9 @@ class DefaultLayout extends Component {
       <img src={spiderpig} className="header-image-center"></img>
       <img src={simpsons_header} className="header-image-right"></img>
       <div className="topp_menu">
-      <button>Home</button>
-      <button>Who are we?</button>
-      <button>Place to be</button>
+      <a href="/home">Home</a>
+      <a href="/report">Rapport</a>
+      <a href="https://inworker.sharepoint.com/sites/ASPC2017">Place to be</a>
       </div>
       </div>
       <MapContainer/>

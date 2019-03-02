@@ -49,7 +49,7 @@
 .topp_menu{
   padding-left:25px; 
 }
-.topp_menu button{
+.topp_menu a{
   color: rgb(255, 255, 0);
   float:left;
   font-weight: 700;
@@ -58,10 +58,16 @@
   background-color: transparent;
   border: 0;
   padding: 0 20px 0 0;
+  text-decoration: none;
 
 }
 .App-link {
   color: #61dafb;
+}
+
+.popup{
+  font-family: Simpsons;
+  font-weight: 100;
 }
 
 @keyframes App-logo-spin {
