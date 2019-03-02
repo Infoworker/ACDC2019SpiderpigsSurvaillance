@@ -23,8 +23,8 @@ interface IMapContainerState{
     map: any;
 
     buildningStore:IBuildningStoreProps;
-    //playerStore:IPlayerStoreProps
-    playerStore:IPlayer[];
+    playerStore:IPlayerStoreProps
+    //playerStore:IPlayer[];
 
 }
 
@@ -42,7 +42,7 @@ export default class MapContainer extends React.Component<IMapContainerProps,IMa
                 tick: Date.now(),
                 map: undefined,
     
-                playerStore: [],
+                playerStore: PlayerStore,
                 buildningStore:BuildningStore
     
             }
@@ -78,23 +78,23 @@ export default class MapContainer extends React.Component<IMapContainerProps,IMa
             this.setState({tick: Date.now()}, ()=> {
                 //console.log(this.state.tick);
             });
-        }, 2000);
+        }, 10000);
     }
 
    // @action
-    componentDidMount() {
-        //const {buildningStore, playerStore } = this.props;
-        playerStore.fetchUsers().then(users=>{
-            console.log(users);
-            //Object.assign(playerStore.players, users);
-            let newPlayerStore = this.state.playerStore;
-            //newPlayerStore.players = users;
-            newPlayerStore = users;
+    // componentDidMount() {
+    //     //const {buildningStore, playerStore } = this.props;
+    //     playerStore.fetchUsers().then(users=>{
+    //         console.log(users);
+    //         //Object.assign(playerStore.players, users);
+    //         let newPlayerStore = this.state.playerStore;
+    //         //newPlayerStore.players = users;
+    //         newPlayerStore = users;
 
-            this.setState({playerStore: newPlayerStore});
-        });
-        //console.log(playerStore.players);
-    }
+    //         this.setState({playerStore: newPlayerStore});
+    //     });
+    //     //console.log(playerStore.players);
+    // }
 
     
     // tick() {
@@ -174,7 +174,7 @@ export default class MapContainer extends React.Component<IMapContainerProps,IMa
                 //const players: IPlayer[] = this.props.playerStore.players;
                 //console.log(players);
                 //const buildMarkerPerson = this.state.playerStore.players.map(player=>{
-                    const buildMarkerPerson = this.state.playerStore.map(player=>{
+                    const buildMarkerPerson = this.state.playerStore.players.map((player:any)=>{
                     console.log(player.position);
                     let m = new (window as any).google.maps.Marker({
                         position:{lat:player.position.lat, lng:player.position.lng},

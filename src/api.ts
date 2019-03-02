@@ -38,3 +38,8 @@ export async function getUsers(): Promise<IPlayer[]> {
 
     return users;
 }
+
+
+// export async function postUserMovement() {
+//     await fetch(apiUrl + )
+// }
