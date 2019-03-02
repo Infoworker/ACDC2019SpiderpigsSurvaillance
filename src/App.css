@@ -21,7 +21,7 @@
   max-height:100%;
   float:left;
   text-align:center;
-  padding: 40px 0 0 10px;
+  padding: 0 0 0 10px;
 }
 .header-image-right{
   max-width: 100%;
@@ -47,7 +47,7 @@
   background-size: cover;
 }
 .topp_menu{
-  padding-left:30px; 
+  padding-left:25px; 
 }
 .topp_menu button{
   color: rgb(255, 255, 0);
