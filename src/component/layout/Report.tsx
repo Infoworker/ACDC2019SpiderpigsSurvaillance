@@ -16,7 +16,7 @@ class Report extends Component {
         <div className="topp_menu">
         <a href="/home">Home</a>
         <a href="/report">Rapport</a>
-        <a href="/test">Place to be</a>
+        <a href="https://inworker.sharepoint.com/sites/ASPC2017">We love SharePoint</a>
         </div>
         </div>
         <PowerBI/>

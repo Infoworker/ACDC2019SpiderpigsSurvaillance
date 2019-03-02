@@ -18,7 +18,7 @@ class DefaultLayout extends Component {
       <div className="topp_menu">
       <a href="/home">Home</a>
       <a href="/report">Rapport</a>
-      <a href="https://inworker.sharepoint.com/sites/ASPC2017">Place to be</a>
+      <a href="https://inworker.sharepoint.com/sites/ASPC2017">We love SharePoint</a>
       </div>
       </div>
       <MapContainer/>
