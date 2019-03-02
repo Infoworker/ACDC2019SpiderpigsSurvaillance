@@ -6,8 +6,14 @@ import simpsontext from '../../image/simpsons_logo.png';
 import spiderpig from '../../image/spiderpig_header.png';
 import simpsons_header from '../../image/simpsons_header.png';
 
-class DefaultLayout extends Component {
+export class DefaultLayout extends Component {
+
+
+
   render() {
+
+
+
     return (
       <div className="App">
       <div className="App-header">
@@ -20,7 +26,8 @@ class DefaultLayout extends Component {
       <button>Place to be</button>
       </div>
       </div>
-      <MapContainer/>
+      {this.props.children}
+      {/* <MapContainer/> */}
       </div>
     );
   }

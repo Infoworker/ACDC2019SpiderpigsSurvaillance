@@ -2,16 +2,18 @@ import { IPlayerStoreProps, IPlayer } from "./store";
 
 const apiUrl = "https://spiderpigs-covertops.azurewebsites.net";
 
-export async function getUsers(): Promise<IPlayerStoreProps> {
+export async function getUsers(): Promise<IPlayer[]> {
     var httpRes = await fetch(apiUrl + "/api/NSAFiles", {
-        method: "GET"
+        method: "GET",
+        // headers: {
+        //     "Content-Type": "application/json"
+        // },
     });
 
+    //console.log(httpRes.statusText);
     var content = await httpRes.json();
 
-    let users: IPlayerStoreProps = {
-
-        players: content.map((userData: any)=>{
+    let users: IPlayer[] = content.map((userData: any)=>{
             const id = userData.id;
             const position = {
                 lat: userData.location[0].lat,
@@ -22,7 +24,7 @@ export async function getUsers(): Promise<IPlayerStoreProps> {
             const lastName = userData.lastName;
             const movementPattern = userData.location.map((loc: any)=>(loc.id, loc.lat, loc.lng));
 
-            return {
+            const retVal = {
                 id,
                 position,
                 icon,
@@ -30,8 +32,9 @@ export async function getUsers(): Promise<IPlayerStoreProps> {
                 lastName,
                 movementPattern
             }
+            console.log(retVal);
+            return retVal;
         })
-    }
 
     return users;
 }

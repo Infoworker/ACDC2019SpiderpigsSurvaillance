@@ -3,13 +3,17 @@ import Map from '../Map/Map';
 import {compose} from 'recompose';
 import {inject,observer} from 'mobx-react';
 import * as image from '../../image/duff.png';
-import {IBuildningStoreProps,IPlayerStoreProps, IPlayer} from '../../store';
+import {IBuildningStoreProps,IPlayerStoreProps, IPlayer, BuildningStore, PlayerStore} from '../../store';
 import { timingSafeEqual } from 'crypto';
+import { action, toJS } from 'mobx';
+import {DefaultLayout} from "../layout/Default";
+import playerStore from '../../store/player/PlayerStore';
 
 
 interface IMapContainerProps{
     buildningStore:IBuildningStoreProps;
     playerStore:IPlayerStoreProps
+    //playerStore:IPlayer[]
 }
 
 interface IMapContainerState{
@@ -17,19 +21,39 @@ interface IMapContainerState{
     playerMarkers: any[];
     tick: number;
     map: any;
+
+    buildningStore:IBuildningStoreProps;
+    //playerStore:IPlayerStoreProps
+    playerStore:IPlayer[];
+
 }
 
 
-class MapContainer extends React.Component<IMapContainerProps,IMapContainerState>{
+export default class MapContainer extends React.Component<IMapContainerProps,IMapContainerState>{
+
+
 
     constructor(props: IMapContainerProps) {
         super(props)
-        this.state= {
-            markers: [],
-            playerMarkers: [],
-            tick: Date.now(),
-            map: undefined
-        }
+
+            this.state= {
+                markers: [],
+                playerMarkers: [],
+                tick: Date.now(),
+                map: undefined,
+    
+                playerStore: [],
+                buildningStore:BuildningStore
+    
+            }
+
+        
+
+        
+
+        //console.log(this.props.playerStore);
+        //console.log(this.props.playerStore.players[0]);
+
         setInterval(()=>{
 
             if (this.state.playerMarkers && this.state.map) {
@@ -57,6 +81,21 @@ class MapContainer extends React.Component<IMapContainerProps,IMapContainerState
         }, 2000);
     }
 
+   // @action
+    componentDidMount() {
+        //const {buildningStore, playerStore } = this.props;
+        playerStore.fetchUsers().then(users=>{
+            console.log(users);
+            //Object.assign(playerStore.players, users);
+            let newPlayerStore = this.state.playerStore;
+            //newPlayerStore.players = users;
+            newPlayerStore = users;
+
+            this.setState({playerStore: newPlayerStore});
+        });
+        //console.log(playerStore.players);
+    }
+
     
     // tick() {
     //     this.setState({tick: Date.now()}, ()=> {
@@ -67,6 +106,8 @@ class MapContainer extends React.Component<IMapContainerProps,IMapContainerState
     //componentDidUpdate
 
     render(){
+
+        //console.log(this.props.playerStore.players[0]);
 
         // if (this.state.playerMarkers && this.state.map) {
         //     //console.log(this.state.playerMarkers);
@@ -81,6 +122,7 @@ class MapContainer extends React.Component<IMapContainerProps,IMapContainerState
         // }
 
         return(
+            <DefaultLayout>
             <Map
             id="myMap"
             options={{
@@ -94,7 +136,7 @@ class MapContainer extends React.Component<IMapContainerProps,IMapContainerState
 
                 let newMarkers = this.state.markers;
                  
-                const buildMarker = this.props.buildningStore.buildnings.map(buildning=>{
+                const buildMarker = this.state.buildningStore.buildnings.map(buildning=>{
 
                     let popup = undefined;
                     
@@ -128,7 +170,12 @@ class MapContainer extends React.Component<IMapContainerProps,IMapContainerState
                 });
                 
 
-                const buildMarkerPerson = this.props.playerStore.players.map(player=>{
+                console.log(this.state.playerStore);
+                //const players: IPlayer[] = this.props.playerStore.players;
+                //console.log(players);
+                //const buildMarkerPerson = this.state.playerStore.players.map(player=>{
+                    const buildMarkerPerson = this.state.playerStore.map(player=>{
+                    console.log(player.position);
                     let m = new (window as any).google.maps.Marker({
                         position:{lat:player.position.lat, lng:player.position.lng},
                         map:map,
@@ -160,6 +207,7 @@ class MapContainer extends React.Component<IMapContainerProps,IMapContainerState
 
             }}
           />
+          </DefaultLayout>
         );
     }
 
@@ -201,11 +249,14 @@ class MapContainer extends React.Component<IMapContainerProps,IMapContainerState
 
 
 const enchanted = compose<IMapContainerProps,{}>(
- inject('buildningStore','playerStore'),
- observer
+
+
+
+    inject('buildningStore','playerStore'),
+    observer
 );
 
 
-export default enchanted(MapContainer);
+//export default enchanted(MapContainer);
 
 
